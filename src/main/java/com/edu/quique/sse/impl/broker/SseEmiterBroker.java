@@ -5,7 +5,6 @@ import com.edu.quique.sse.core.broker.AbstractSseEmiterBroker;
 import com.edu.quique.sse.core.broker.BrokerPublisher;
 import com.edu.quique.sse.core.broker.BrokerSubscriber;
 import com.edu.quique.sse.utils.Mappers;
-import com.edu.quique.sse.utils.WebEventTypeEnum;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +28,7 @@ public class SseEmiterBroker extends AbstractSseEmiterBroker<OffsetDateTime, Bro
     OffsetDateTime messageId =
         OffsetDateTime.ofInstant(
             Instant.ofEpochMilli(System.currentTimeMillis()), ZoneId.systemDefault());
-    this.broadCastMessage(messageId, topic, data, WebEventTypeEnum.update.name());
+    this.broadCastMessage(messageId, topic, data);
   }
 
   @Override

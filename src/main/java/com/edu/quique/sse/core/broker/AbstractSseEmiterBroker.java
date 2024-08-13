@@ -39,12 +39,11 @@ public abstract class AbstractSseEmiterBroker<K, V> {
     this.removeSubscriptor(topic, subcriptor);
   }
 
-  protected void send(K messageId, SseEmitter subcriptor, V data, String eventTypeName) {
+  protected void send(K messageId, SseEmitter subcriptor, V data) {
     try {
       SseEmitter.SseEventBuilder builder =
           SseEmitter.event()
               .data(this.serializePayload(data), MediaType.APPLICATION_JSON)
-              .name(eventTypeName)
               .id(this.serializeMessageId(messageId));
       subcriptor.send(builder);
     } catch (IOException e) {
@@ -52,7 +51,7 @@ public abstract class AbstractSseEmiterBroker<K, V> {
     }
   }
 
-  protected void broadCastMessage(K messageId, String topic, V message, String eventTypeName) {
+  protected void broadCastMessage(K messageId, String topic, V message) {
     CopyOnWriteArrayList<SseEmitter> subscriptors =
         (CopyOnWriteArrayList) this.inMemorySubscriptorDirectory.get(topic);
     if (subscriptors != null) {
@@ -60,7 +59,7 @@ public abstract class AbstractSseEmiterBroker<K, V> {
           .forEach(
               (sub) -> {
                 try {
-                  this.send(messageId, sub, message, eventTypeName);
+                  this.send(messageId, sub, message);
                 } catch (IllegalStateException e) {
                   this.removeSubscriptor(topic, sub);
                   log.info(

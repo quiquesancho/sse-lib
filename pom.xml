@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.edu.quique.libs</groupId>
     <artifactId>sse-lib</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>sse-lib</name>
     <description>Librería para implementar conexión SSE</description>
     <properties>

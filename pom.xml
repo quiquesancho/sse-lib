@@ -37,7 +37,7 @@
         <repository>
             <id>github</id>
             <name>GitHub OWNER Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/quiquesancho/sse-lib</url>
+            <url>https://maven.pkg.github.com/quiquesancho/libs</url>
         </repository>
     </distributionManagement>
 </project>
